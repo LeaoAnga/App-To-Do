@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+input,
+select,
+button.form-button,
+option {
+  font-family: "Inter", sans-serif;
+  background-color: #09090b;
+  color: #fafafa;
+
+  line-height: 120%;
+  letter-spacing: -0.02em;
+}
+
+/* app */
+#app {
+  padding: 40px 0px;
+  max-width: 320px;
+  margin: auto;
+  position: relative;
+}
+
+/* form */
+
+input,
+select {
+  all: unset;
+}
+
+input,
+select,
+button.form-button {
+  width: 100%;
+}
+
+.fields {
+  display: grid;
+  gap: 8px;
+}
+
+.field-wrapper {
+  padding: 18px;
+  background-color: #09090b;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.field-wrapper:focus-within {
+  outline: 2px solid yellowgreen;
+}
+
+.field-wrapper:hover select {
+  cursor: pointer;
+}
+
+button.form-button {
+  margin-top: 12px;
+  border: none;
+  padding: 12px 20px;
+  background-color: #aff445;
+  border-radius: 8px;
+
+  font-weight: 500;
+  font-size: 16px;
+
+  color: #132f00;
+  cursor: pointer;
+}
+
+/* main */
+main {
+  margin-top: 32px;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 24px;
+
+  margin-bottom: 24px;
+}
+
+section {
+  display: grid;
+  gap: 10px;
+}
+
+section input[type="checkbox"] {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+section .card-bg {
+  background: #18181b;
+
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1),
+    0px 2px 2px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0px 0px 1px rgba(255, 255, 255, 0.03),
+    inset 0px 1px 0px rgba(255, 255, 255, 0.03);
+
+  border-radius: 12px;
+  position: relative;
+  padding: 10px 16px;
+  min-width: 280px;
+}
+
+label{
+  display: flex;
+}
+
+section .card-bg:has(:checked) svg.active,
+section .card-bg svg.inactive {
+  display: block;
+}
+
+section .card-bg:has(:checked) svg.inactive,
+section .card-bg svg.active {
+  display: none;
+}
+
+section .input-wrapper:hover path.active,
+section .input-wrapper:hover path.inactive,
+section input:hover {
+  border: 1px solid #bef26428;
+  border-radius: 12px;
+  stroke: #bef264;
+  stroke-width: 1.5px;
+}
+
+section .input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex:1
+}
+
+.nome {
+  display: block;
+}
+
+.lugar {
+  font-size: 14px;
+  color: #a1a1ab;
+}
+
+time {
+  font-size: 14px;
+  color: #a1a1ab;
+  text-align: right;
+}
+
+time.full {
+  display: none;
+}
+
+.trash{
+  display:none;
+}
+
+
+
+
+footer {
+  text-align: center;
+    margin-bottom: 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.github{
+  color:rgb(201, 0, 201)
+}
+a.github:hover{
+  color:rgb(247, 48, 247)
+}
+
+a.linkedin{
+  color:rgb(0, 171, 214)
+}
+a.linkedin:hover{
+  color: rgb(31, 210, 255);
+}
+
+@media (width > 1020px) {
+  #app {
+    display: flex;
+    max-width: 80vw;
+    gap: 15%;
+  }
+
+  main {
+    margin-top: 0;
+    flex: 1;
+  }
+
+  h1 {
+    text-align: left;
+  }
+
+  label {
+    display: flex;
+        align-items: center;
+        justify-content: space-between;
+  }
+
+  section .input-wrapper{
+    flex:none;
+  }
+
+  span {
+    margin-left: 8px;
+    flex: 1;
+  }
+
+  time.full {
+    text-align: center;
+    display: block;
+  }
+
+  time.short {
+    display: none;
+  }
+
+  .trash{
+    all:unset;
+    color: #a1a1ab;
+    z-index: 1;
+  }
+  
+  .trash:hover{
+    cursor: pointer;
+    color: red;
+  }
+
+  section label:has(.trash:hover) input{
+    border: 1px solid rgba(255, 0, 0, 0.397);
+    border-radius: 12px
+  }
+
+  footer {
+    bottom: 0;
+    
+  }
+}
+
+@media (width > 1910px) {
+  * {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
