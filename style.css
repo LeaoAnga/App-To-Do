@@ -4,14 +4,25 @@
   box-sizing: border-box;
 }
 
+:root {
+  --ligther-blue: #281f43;
+  --dark-blue: #0b0911;
+  --bg-for-card: #110e1a;
+  --green: #35ee55;
+  --red: #602528;
+  --border-red: #602528a6;
+  --text-color: #f8f8ff;
+  --darker-text: #f8f8ffa6;
+}
+
 html,
 input,
 select,
 button.form-button,
 option {
   font-family: "Inter", sans-serif;
-  background-color: #09090b;
-  color: #fafafa;
+  background-color: var(--dark-blue);
+  color: var(--text-color);
 
   line-height: 120%;
   letter-spacing: -0.02em;
@@ -45,8 +56,7 @@ button.form-button {
 
 .field-wrapper {
   padding: 18px;
-  background-color: #09090b;
-  border: 1px solid #27272a;
+  border: 1px solid var(--ligther-blue);
   border-radius: 8px;
 
   display: flex;
@@ -55,7 +65,7 @@ button.form-button {
 }
 
 .field-wrapper:focus-within {
-  outline: 2px solid yellowgreen;
+  outline: 1px solid var(--green);
 }
 
 .field-wrapper:hover select {
@@ -66,13 +76,12 @@ button.form-button {
   margin-top: 12px;
   border: none;
   padding: 12px 20px;
-  background-color: #aff445;
+  background-color: var(--green);
   border-radius: 8px;
 
   font-weight: 500;
   font-size: 16px;
-
-  color: #132f00;
+  color: var(--dark-blue);
   cursor: pointer;
 }
 
@@ -101,7 +110,7 @@ section input[type="checkbox"] {
 }
 
 section .card-bg {
-  background: #18181b;
+  background-color: var(--bg-for-card);
 
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1),
     0px 2px 2px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(0, 0, 0, 0.1),
@@ -114,7 +123,7 @@ section .card-bg {
   min-width: 280px;
 }
 
-label{
+label {
   display: flex;
 }
 
@@ -133,7 +142,7 @@ section .input-wrapper:hover path.inactive,
 section input:hover {
   border: 1px solid #bef26428;
   border-radius: 12px;
-  stroke: #bef264;
+  stroke: var(--green);
   stroke-width: 1.5px;
 }
 
@@ -141,7 +150,7 @@ section .input-wrapper {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex:1
+  flex: 1;
 }
 
 .nome {
@@ -150,12 +159,12 @@ section .input-wrapper {
 
 .lugar {
   font-size: 14px;
-  color: #a1a1ab;
+  color: var(--darker-text);
 }
 
 time {
   font-size: 14px;
-  color: #a1a1ab;
+  color: var(--darker-text);
   text-align: right;
 }
 
@@ -163,33 +172,30 @@ time.full {
   display: none;
 }
 
-.trash{
-  display:none;
+.trash {
+  display: none;
 }
-
-
-
 
 footer {
   text-align: center;
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 a {
   text-decoration: none;
 }
 
-a.github{
-  color:rgb(201, 0, 201)
+a.github {
+  color: rgb(201, 0, 201);
 }
-a.github:hover{
-  color:rgb(247, 48, 247)
+a.github:hover {
+  color: rgb(247, 48, 247);
 }
 
-a.linkedin{
-  color:rgb(0, 171, 214)
+a.linkedin {
+  color: rgb(0, 171, 214);
 }
-a.linkedin:hover{
+a.linkedin:hover {
   color: rgb(31, 210, 255);
 }
 
@@ -211,12 +217,12 @@ a.linkedin:hover{
 
   label {
     display: flex;
-        align-items: center;
-        justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  section .input-wrapper{
-    flex:none;
+  section .input-wrapper {
+    flex: none;
   }
 
   span {
@@ -233,25 +239,24 @@ a.linkedin:hover{
     display: none;
   }
 
-  .trash{
-    all:unset;
-    color: #a1a1ab;
+  .trash {
+    all: unset;
+    color: var(--darker-text);
     z-index: 1;
   }
-  
-  .trash:hover{
+
+  .trash:hover {
     cursor: pointer;
-    color: red;
+    color: var(--red);
   }
 
-  section label:has(.trash:hover) input{
+  section label:has(.trash:hover) input {
     border: 1px solid rgba(255, 0, 0, 0.397);
-    border-radius: 12px
+    border-radius: 12px;
   }
 
   footer {
     bottom: 0;
-    
   }
 }
 
