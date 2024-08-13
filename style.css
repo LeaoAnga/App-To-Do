@@ -9,10 +9,12 @@
   --dark-blue: #0b0911;
   --bg-for-card: #110e1a;
   --green: #35ee55;
-  --red: #602528;
+  --red: #f14347;
   --border-red: #602528a6;
   --text-color: #f8f8ff;
   --darker-text: #f8f8ffa6;
+  --orange: #f39d43;
+  --yellow: #f3c643;
 }
 
 html,
@@ -54,6 +56,10 @@ button.form-button {
   gap: 8px;
 }
 
+.fields label:hover {
+  cursor: pointer;
+}
+
 .field-wrapper {
   padding: 18px;
   border: 1px solid var(--ligther-blue);
@@ -68,8 +74,32 @@ button.form-button {
   outline: 1px solid var(--green);
 }
 
+.field-wrapper:focus-within path {
+  stroke: var(--green);
+}
+
 .field-wrapper:hover select {
   cursor: pointer;
+}
+
+.field-wrapper#importance {
+  padding: 13px;
+}
+
+.field-wrapper#importance label[for="high"],
+.field-wrapper#importance label[for="medium"],
+.field-wrapper#importance label[for="low"] {
+  padding: 5px;
+  border: 1px solid var(--red);
+  border-radius: 5px;
+}
+
+.field-wrapper#importance label[for="medium"] {
+  border-color: var(--orange);
+}
+
+.field-wrapper#importance label[for="low"] {
+  border-color: var(--yellow);
 }
 
 button.form-button {
@@ -153,11 +183,11 @@ section .input-wrapper {
   flex: 1;
 }
 
-.nome {
+.name {
   display: block;
 }
 
-.lugar {
+.place {
   font-size: 14px;
   color: var(--darker-text);
 }
