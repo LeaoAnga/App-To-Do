@@ -1,6 +1,9 @@
 Procurar inspirações 
 
--> adicionar uma imagem de fundo geométrica ou um simples degradê
+Adicionar um select para filtro de atividade,
+importancia alta media e baixa 
+
+
 -> Criar um filtro de atividades
     -> colocar 3 opções de categoria no final do formulário
     -> criar 'categorias' para possibilitar filtragem
