@@ -37,6 +37,7 @@
               type="text"
               placeholder="Nome da tarefa"
               name="task"
+              id="task_input"
               required
             />
           </div>
@@ -66,8 +67,9 @@
 
             <input
               type="text"
-              name="lugar"
+              name="place"
               placeholder="Qual o endereço?"
+              id="task_place"
               required
             />
           </div>
@@ -130,17 +132,17 @@
             <p id="subtitle-div">Importância:</p>
             <label for="high">
               Alta
-              <input type="checkbox" name="high" id="high" />
+              <input type="radio" name="importance" id="high" value="high" />
             </label>
 
             <label for="medium">
               Média
-              <input type="checkbox" name="medium" id="medium" />
+              <input type="radio" name="importance" id="medium" value="medium" />
             </label>
 
             <label for="low">
               Baixa
-              <input type="checkbox" name="low" id="low" />
+              <input type="radio" name="importance" id="low" value="low"/>
             </label>
           </div>
         </div>

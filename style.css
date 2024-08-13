@@ -13,8 +13,8 @@
   --border-red: #602528a6;
   --text-color: #f8f8ff;
   --darker-text: #f8f8ffa6;
-  --orange: #f39d43;
-  --yellow: #f3c643;
+  --orange: #F39D43;
+  --yellow: #F3C743;
 }
 
 html,
@@ -71,7 +71,7 @@ button.form-button {
 }
 
 .field-wrapper:focus-within {
-  outline: 1px solid var(--green);
+  border: 1px solid var(--green);
 }
 
 .field-wrapper:focus-within path {
@@ -94,12 +94,46 @@ button.form-button {
   border-radius: 5px;
 }
 
+.field-wrapper#importance label:has(:checked) {
+  color: black;
+}
+
+.field-wrapper#importance:focus-within:has(input#high:checked),
+.field-wrapper:focus-within:has(input#high:checked) path {
+  border-color: var(--red);
+  stroke: var(--red);
+}
+
+.field-wrapper#importance label[for="high"]:has(:checked) {
+  background-color: var(--red);
+}
+
 .field-wrapper#importance label[for="medium"] {
   border-color: var(--orange);
 }
 
+.field-wrapper#importance label[for="medium"]:has(:checked) {
+  background-color: var(--orange);
+}
+
+.field-wrapper#importance:focus-within:has(input#medium:checked),
+.field-wrapper:focus-within:has(input#medium:checked) path {
+  border-color: var(--orange);
+  stroke: var(--orange);
+}
+
 .field-wrapper#importance label[for="low"] {
   border-color: var(--yellow);
+}
+
+.field-wrapper#importance label[for="low"]:has(:checked) {
+  background-color: var(--yellow);
+}
+
+.field-wrapper#importance:focus-within:has(input#low:checked),
+.field-wrapper:focus-within:has(input#low:checked) path {
+  border-color: var(--yellow);
+  stroke: var(--yellow);
 }
 
 button.form-button {
@@ -167,7 +201,7 @@ section .card-bg svg.active {
   display: none;
 }
 
-section .input-wrapper:hover path.active,
+section .input-wrapper path.active,
 section .input-wrapper:hover path.inactive,
 section input:hover {
   border: 1px solid #bef26428;
