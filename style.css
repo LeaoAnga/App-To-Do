@@ -9,10 +9,12 @@
   --dark-blue: #0b0911;
   --bg-for-card: #110e1a;
   --green: #35ee55;
-  --red: #602528;
+  --red: #f14347;
   --border-red: #602528a6;
   --text-color: #f8f8ff;
   --darker-text: #f8f8ffa6;
+  --orange: #f39d43;
+  --yellow: #f3c743;
 }
 
 html,
@@ -54,6 +56,10 @@ button.form-button {
   gap: 8px;
 }
 
+.fields label:hover {
+  cursor: pointer;
+}
+
 .field-wrapper {
   padding: 18px;
   border: 1px solid var(--ligther-blue);
@@ -65,11 +71,78 @@ button.form-button {
 }
 
 .field-wrapper:focus-within {
-  outline: 1px solid var(--green);
+  border: 1px solid var(--green);
+}
+
+.field-wrapper:focus-within path {
+  stroke: var(--green);
 }
 
 .field-wrapper:hover select {
   cursor: pointer;
+}
+
+.field-wrapper#importance {
+  padding: 13px;
+}
+
+.field-wrapper#importance label[for="high"],
+.field-wrapper#importance label[for="medium"],
+.field-wrapper#importance label[for="low"] {
+  padding: 5px;
+  border: 1px solid var(--red);
+  border-radius: 5px;
+}
+
+.field-wrapper#importance label:has(:checked) {
+  color: black;
+}
+
+.field-wrapper#importance:focus-within:has(input#high:checked),
+.field-wrapper:focus-within:has(input#high:checked) path,
+.high,
+.high svg {
+  border-color: var(--red);
+  stroke: var(--red);
+  color:var(--red)
+}
+
+.field-wrapper#importance label[for="high"]:has(:checked) {
+  background-color: var(--red);
+}
+
+.field-wrapper#importance label[for="medium"] {
+  border-color: var(--orange);
+}
+
+.field-wrapper#importance label[for="medium"]:has(:checked) {
+  background-color: var(--orange);
+}
+
+.field-wrapper#importance:focus-within:has(input#medium:checked),
+.field-wrapper:focus-within:has(input#medium:checked) path,
+.medium,
+.medium svg {
+  border-color: var(--orange);
+  stroke: var(--orange);
+  color:var(--orange)
+}
+
+.field-wrapper#importance label[for="low"] {
+  border-color: var(--yellow);
+}
+
+.field-wrapper#importance label[for="low"]:has(:checked) {
+  background-color: var(--yellow);
+}
+
+.field-wrapper#importance:focus-within:has(input#low:checked),
+.field-wrapper:focus-within:has(input#low:checked) path,
+.low,
+.low svg {
+  border-color: var(--yellow);
+  stroke: var(--yellow);
+  color: var(--yellow);
 }
 
 button.form-button {
@@ -125,6 +198,13 @@ section .card-bg {
 
 label {
   display: flex;
+  gap: 16px;
+}
+
+.card-bg svg.inactive,
+.card-bg svg.active{
+  height:auto;
+  min-width:20px
 }
 
 section .card-bg:has(:checked) svg.active,
@@ -137,10 +217,10 @@ section .card-bg svg.active {
   display: none;
 }
 
-section .input-wrapper:hover path.active,
-section .input-wrapper:hover path.inactive,
+section .card-bg path.active,
+section .card-bg:hover path.inactive,
 section input:hover {
-  border: 1px solid #bef26428;
+  border: 1px solid var(--green);
   border-radius: 12px;
   stroke: var(--green);
   stroke-width: 1.5px;
@@ -148,16 +228,13 @@ section input:hover {
 
 section .input-wrapper {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
   gap: 8px;
-  flex: 1;
 }
 
-.nome {
-  display: block;
-}
-
-.lugar {
+.place {
   font-size: 14px;
   color: var(--darker-text);
 }
@@ -165,15 +242,30 @@ section .input-wrapper {
 time {
   font-size: 14px;
   color: var(--darker-text);
-  text-align: right;
 }
 
 time.full {
   display: none;
 }
 
+.importance_value {
+  display: inline;
+}
+
 .trash {
-  display: none;
+  all: unset;
+  color: var(--darker-text);
+  z-index: 1;
+}
+
+.trash:hover {
+  cursor: pointer;
+  color: var(--red);
+}
+
+section label:has(.trash:hover) input {
+  border: 1px solid rgba(255, 0, 0, 0.397);
+  border-radius: 12px;
 }
 
 footer {
@@ -199,11 +291,11 @@ a.linkedin:hover {
   color: rgb(31, 210, 255);
 }
 
-@media (width > 1020px) {
+@media (min-width: 1024px) {
   #app {
     display: flex;
     max-width: 80vw;
-    gap: 15%;
+    gap: 10%;
   }
 
   main {
@@ -215,44 +307,18 @@ a.linkedin:hover {
     text-align: left;
   }
 
-  label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  section .input-wrapper {
-    flex: none;
-  }
+  
 
   span {
-    margin-left: 8px;
     flex: 1;
   }
 
   time.full {
-    text-align: center;
     display: block;
   }
 
   time.short {
     display: none;
-  }
-
-  .trash {
-    all: unset;
-    color: var(--darker-text);
-    z-index: 1;
-  }
-
-  .trash:hover {
-    cursor: pointer;
-    color: var(--red);
-  }
-
-  section label:has(.trash:hover) input {
-    border: 1px solid rgba(255, 0, 0, 0.397);
-    border-radius: 12px;
   }
 
   footer {
