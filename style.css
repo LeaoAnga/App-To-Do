@@ -13,8 +13,8 @@
   --border-red: #602528a6;
   --text-color: #f8f8ff;
   --darker-text: #f8f8ffa6;
-  --orange: #F39D43;
-  --yellow: #F3C743;
+  --orange: #f39d43;
+  --yellow: #f3c743;
 }
 
 html,
@@ -99,9 +99,12 @@ button.form-button {
 }
 
 .field-wrapper#importance:focus-within:has(input#high:checked),
-.field-wrapper:focus-within:has(input#high:checked) path {
+.field-wrapper:focus-within:has(input#high:checked) path,
+.high,
+.high svg {
   border-color: var(--red);
   stroke: var(--red);
+  color:var(--red)
 }
 
 .field-wrapper#importance label[for="high"]:has(:checked) {
@@ -117,9 +120,12 @@ button.form-button {
 }
 
 .field-wrapper#importance:focus-within:has(input#medium:checked),
-.field-wrapper:focus-within:has(input#medium:checked) path {
+.field-wrapper:focus-within:has(input#medium:checked) path,
+.medium,
+.medium svg {
   border-color: var(--orange);
   stroke: var(--orange);
+  color:var(--orange)
 }
 
 .field-wrapper#importance label[for="low"] {
@@ -131,9 +137,12 @@ button.form-button {
 }
 
 .field-wrapper#importance:focus-within:has(input#low:checked),
-.field-wrapper:focus-within:has(input#low:checked) path {
+.field-wrapper:focus-within:has(input#low:checked) path,
+.low,
+.low svg {
   border-color: var(--yellow);
   stroke: var(--yellow);
+  color: var(--yellow);
 }
 
 button.form-button {
@@ -189,6 +198,13 @@ section .card-bg {
 
 label {
   display: flex;
+  gap: 16px;
+}
+
+.card-bg svg.inactive,
+.card-bg svg.active{
+  height:auto;
+  min-width:20px
 }
 
 section .card-bg:has(:checked) svg.active,
@@ -201,10 +217,10 @@ section .card-bg svg.active {
   display: none;
 }
 
-section .input-wrapper path.active,
-section .input-wrapper:hover path.inactive,
+section .card-bg path.active,
+section .card-bg:hover path.inactive,
 section input:hover {
-  border: 1px solid #bef26428;
+  border: 1px solid var(--green);
   border-radius: 12px;
   stroke: var(--green);
   stroke-width: 1.5px;
@@ -212,13 +228,10 @@ section input:hover {
 
 section .input-wrapper {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
   gap: 8px;
-  flex: 1;
-}
-
-.name {
-  display: block;
 }
 
 .place {
@@ -229,15 +242,30 @@ section .input-wrapper {
 time {
   font-size: 14px;
   color: var(--darker-text);
-  text-align: right;
 }
 
 time.full {
   display: none;
 }
 
+.importance_value {
+  display: inline;
+}
+
 .trash {
-  display: none;
+  all: unset;
+  color: var(--darker-text);
+  z-index: 1;
+}
+
+.trash:hover {
+  cursor: pointer;
+  color: var(--red);
+}
+
+section label:has(.trash:hover) input {
+  border: 1px solid rgba(255, 0, 0, 0.397);
+  border-radius: 12px;
 }
 
 footer {
@@ -263,11 +291,11 @@ a.linkedin:hover {
   color: rgb(31, 210, 255);
 }
 
-@media (width > 1020px) {
+@media (min-width: 1024px) {
   #app {
     display: flex;
     max-width: 80vw;
-    gap: 15%;
+    gap: 10%;
   }
 
   main {
@@ -279,44 +307,18 @@ a.linkedin:hover {
     text-align: left;
   }
 
-  label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  section .input-wrapper {
-    flex: none;
-  }
+  
 
   span {
-    margin-left: 8px;
     flex: 1;
   }
 
   time.full {
-    text-align: center;
     display: block;
   }
 
   time.short {
     display: none;
-  }
-
-  .trash {
-    all: unset;
-    color: var(--darker-text);
-    z-index: 1;
-  }
-
-  .trash:hover {
-    cursor: pointer;
-    color: var(--red);
-  }
-
-  section label:has(.trash:hover) input {
-    border: 1px solid rgba(255, 0, 0, 0.397);
-    border-radius: 12px;
   }
 
   footer {
