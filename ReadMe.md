@@ -21,7 +21,7 @@ Este é um site que simula um app de tarefas. Ele permite adicionar e remover ta
 ### Índice
 
 - [Links](#links)
-- [Construído com](#construido-com)
+- [Construído com](#construído-com)
 - [Aprendizado](#aprendizado)
 - [Autores](#autores)
 - [Agradecimentos](#agradecimentos)
