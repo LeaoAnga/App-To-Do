@@ -16,7 +16,7 @@
 
 ### Resumo
 
-Este é um site que simula um app de tarefas. Ele permite adicionar e remover tarefas,com a possibilidade de adicionar uma categoria de importância no menu de criação.
+Este é um site que simula uma aplicação de tarefas. Ele permite adicionar e remover tarefas,com a possibilidade de adicionar uma categoria de importância no menu de criação.
 
 ### Índice
 

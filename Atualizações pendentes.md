@@ -5,7 +5,6 @@ importancia alta media e baixa
 
 
 -> Criar um filtro de atividades
-    -> colocar 3 opções de categoria no final do formulário
     -> criar 'categorias' para possibilitar filtragem
         -> editável a categoria ao clicar no menu
     -> criar um cabeçalho dentro do container das atividades

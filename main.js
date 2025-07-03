@@ -1,8 +1,10 @@
 const inputTaskName = document.getElementById("task_input");
-const inputTaskPlace = document.getElementById('task_place')
+const inputTaskPlace = document.getElementById("task_place");
 const inputDate = document.getElementById("selector-day");
 const inputHour = document.getElementById("selector-hour");
 const section = document.getElementById("tasks-container");
+const filterCategory = document.getElementById("filter-category");
+
 const tasks = [
   {
     name: "Visitar Farol da Barra",
@@ -10,9 +12,46 @@ const tasks = [
     date: "2024-07-06 00:00",
     done: false,
     importance: "medium",
+    category: "hobby",
+    desc: "Passeio turístico para relaxar e tirar fotos.",
+  },
+  {
+    name: "Reunião de trabalho",
+    place: "Escritório Central",
+    date: "2024-07-07 09:00",
+    done: false,
+    importance: "high",
+    category: "trabalho",
+    desc: "Reunião semanal com a equipe para alinhamento de projetos.",
+  },
+  {
+    name: "Comprar presentes",
+    place: "Shopping Iguatemi",
+    date: "2024-07-13 15:00",
+    done: false,
+    importance: "medium",
+    category: "pessoal",
+    desc: "Comprar presentes de aniversário para familiares.",
+  },
+  {
+    name: "Aula de violão",
+    place: "Casa de Cultura",
+    date: "2024-07-14 18:00",
+    done: false,
+    importance: "low",
+    category: "hobby",
+    desc: "Participar da aula semanal de violão.",
+  },
+  {
+    name: "Consulta médica",
+    place: "Clínica Saúde+",
+    date: "2024-07-20 10:30",
+    done: false,
+    importance: "high",
+    category: "pessoal",
+    desc: "Consulta de rotina com o clínico geral.",
   },
 ];
-
 
 //Biblioteca Dayjs
 const formatter = (date) => {
@@ -34,50 +73,54 @@ const formatter = (date) => {
 
 //functions
 
+// Adiciona categoria e descrição ao salvar nova tarefa
 const saveTask = (e) => {
   e.preventDefault();
-  
   const formDate = new FormData(e.target);
-  
   const name = formDate.get("task");
   const place = formDate.get("place");
   const day = formDate.get("day");
   const hour = formDate.get("hour");
   const date = `${day} ${hour}`;
-  const importance = formDate.get('importance')
-  
+  const importance = formDate.get("importance");
+  const category = formDate.get("category");
+  const desc = formDate.get("desc") || "";
   const newTask = {
     name,
     place,
     date,
     done: false,
-    importance
+    importance,
+    category,
+    desc,
   };
-  
-  const hasTask = tasks.find((task) => {
-    return task.date === newTask.date;
-  });
-
+  const hasTask = tasks.find((task) => task.date === newTask.date);
   if (hasTask) {
     return alert("Dia e hora não disponível.");
   }
-
   inputTaskName.value = "";
-  inputTaskPlace.value = '';
-
+  inputTaskPlace.value = "";
   tasks.push(newTask);
   updateTaskList();
 };
 
 const updateTaskList = () => {
   section.innerHTML = "";
-  if (tasks.length === 0) {
+  let filteredTasks = tasks;
+  const selectedCategory = filterCategory.value;
+  if (selectedCategory !== "all") {
+    filteredTasks = tasks.filter((task) => task.category === selectedCategory);
+  }
+  if (filteredTasks.length === 0) {
     section.innerHTML = `<p> Nenhuma task cadastrada </p>`;
   }
-  for (let task of tasks) {
+  for (let task of filteredTasks) {
     section.innerHTML += showTasks(task);
   }
 };
+
+// Adiciona filtro por categoria
+filterCategory.addEventListener("change", updateTaskList);
 
 const showTasks = (task) => {
   let input = `
@@ -114,7 +157,7 @@ const showTasks = (task) => {
                 stroke-width="1.25"
                 d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
-            </svg>`
+            </svg>`;
 
   return `
     <div class="card-bg">
@@ -133,7 +176,9 @@ const showTasks = (task) => {
           
             ${importanceSvg}
           
-            <span class="name">${task.name}, <span class="place">${task.place}</span>
+            <span class="name">${task.name}, <span class="place">${
+            task.place
+            }</span>
             </span>
           </div>
         
@@ -149,14 +194,26 @@ const showTasks = (task) => {
             ${format.day.numeric}/${format.month.short}
             às ${format.hour}
           </time>
+          <div class="desc">${
+            task.desc ? `${task.desc}` : ""
+          }</div>
           
           
           </div>
           <button class="trash" onclick="deleteTask(event)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash"><path d="M3 6h18"/>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+              </svg>
+          </button>
+          <button class="edit" onclick="openEditModal('${
+            task.date
+            }')" title="Editar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+              <path d="M16.862 5.487l1.65 1.65a2 2 0 0 1 0 2.828l-8.01 8.01a2 2 0 0 1-1.01.547l-3.25.65a.5.5 0 0 1-.59-.59l.65-3.25a2 2 0 0 1 .547-1.01l8.01-8.01a2 2 0 0 1 2.828 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </button>
       </label>
-  </div>
+    </div>
     `;
 };
 
@@ -231,13 +288,57 @@ const deleteTask = (e) => {
   //encontrar a task na array
   // utilizar um método para retirar da array
 
-  taskToRemove = e.target
+  taskToRemove = e.target;
 
-  removeIndex = tasks.findIndex(task => task.value === taskToRemove.date)
-  console.log(removeIndex)
+  removeIndex = tasks.findIndex((task) => task.value === taskToRemove.date);
+  console.log(removeIndex);
 
-  tasks.splice(removeIndex,1);
-  updateTaskList()
+  tasks.splice(removeIndex, 1);
+  updateTaskList();
+};
+
+// Modal de edição
+let currentEditTask = null;
+window.openEditModal = function (date) {
+  const modal = document.getElementById("task-modal");
+  const task = tasks.find((t) => t.date === date);
+  if (!task) return;
+  currentEditTask = task;
+  document.getElementById("edit-task-name").value = task.name;
+  document.getElementById("edit-task-place").value = task.place;
+  document.getElementById("edit-task-day").value = task.date.split(" ")[0];
+  document.getElementById("edit-task-hour").value = task.date.split(" ")[1];
+  document.getElementById("edit-task-category").value = task.category;
+  document.getElementById("edit-task-importance").value = task.importance;
+  document.getElementById("edit-task-desc").value = task.desc || "";
+  modal.style.display = "block";
+};
+document.getElementById("close-modal").onclick = function () {
+  document.getElementById("task-modal").style.display = "none";
+};
+document.getElementById("edit-task-form").onsubmit = function (e) {
+  e.preventDefault();
+  if (!currentEditTask) return;
+  currentEditTask.name = document.getElementById("edit-task-name").value;
+  currentEditTask.place = document.getElementById("edit-task-place").value;
+  const day = document.getElementById("edit-task-day").value;
+  const hour = document.getElementById("edit-task-hour").value;
+  currentEditTask.date = `${day} ${hour}`;
+  currentEditTask.category =
+    document.getElementById("edit-task-category").value;
+  currentEditTask.importance = document.getElementById(
+    "edit-task-importance"
+  ).value;
+  currentEditTask.desc = document.getElementById("edit-task-desc").value;
+  document.getElementById("task-modal").style.display = "none";
+  updateTaskList();
+};
+document.getElementById("modal-delete").onclick = function () {
+  if (!currentEditTask) return;
+  const idx = tasks.indexOf(currentEditTask);
+  if (idx > -1) tasks.splice(idx, 1);
+  document.getElementById("task-modal").style.display = "none";
+  updateTaskList();
 };
 
 createSelection();
